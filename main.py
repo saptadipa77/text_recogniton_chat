@@ -36,16 +36,18 @@ def check_all_messages(message):
         highest_prob_list[bot_response] = message_probability(message, list_of_words, single_response, required_words)
 
     # Responses -------------------------------------------------------------------------------------------------------
-    response('Hello!', ['hello', 'hi', 'hey', 'sup', 'heyo'], single_response=True)
-    response('See you!', ['bye', 'goodbye'], single_response=True)
-    response('I\'m doing fine, and you?', ['how', 'are', 'you', 'doing'], required_words=['how'])
-    response('You\'re welcome!', ['thank', 'thanks'], single_response=True)
-    response('Thank you!', ['i', 'love', 'code', 'palace'], required_words=['code', 'palace'])
-
+    response('hello', ['hi','wassup','sup','heya'],single_response=True)
+    # response ("materials_inquiry",["Sure, we offer a wide range of materials including steel, cement, tiles, pipes, and valves. What are you looking for?"],required_words=['materials'])
+    # response(  "pricing_inquiry", ["The pricing for our materials varies depending on factors such as quantity, type, and location. Can you provide more details so I can assist you better?"],required_words=['quantity','type','location'])
+    # response(  "order_placement",["Great! Let's get started with your order. Could you please specify the material, quantity, and delivery address?"],required_words=['address','shipping','quantity','order'])
+    response("order_confirmation",["Your order has been confirmed. We will process it shortly and notify you once it's ready for delivery."],required_words=['confirmation','confirm','order','ready'])
+    response( "goodbye", ["Thank you for visiting us! If you need any further assistance, feel free to reach out. Goodbye!"],required_words=['bye','Bye','BYE','TATA','goodnight'])
     # Longer responses
     response(long.R_ADVICE, ['give', 'advice'], required_words=['advice'])
     response(long.R_EATING, ['what', 'you', 'eat'], required_words=['you', 'eat'])
-
+    response(long.R_MATERIALS,['help','materials','inquiry'],required_words=['materials'])
+    response(long.R_PRICING,['price','of','materials'],required_words=['price','materials'])
+    response(long.R_PLACEMENT,['order','placement','materials','address','shipping','quantity','place'],required_words=['address','shipping','quantity','order','place'])
     best_match = max(highest_prob_list, key=highest_prob_list.get)
     # print(highest_prob_list)
     # print(f'Best match = {best_match} | Score: {highest_prob_list[best_match]}')
