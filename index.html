@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot Webpage</title>
+   <link rel="stylesheet" href="style.css" > </head>
+<body>
+    <div class="container">
+        <div class="chat-box" id="chat-box">
+        </div>
+        <input type="text" id="user-input" class="user-input" placeholder="Type your message...">
+    </div>
+
+    <script>
+        const chatBox = document.getElementById('chat-box');
+        const userInput = document.getElementById('user-input');
+
+        userInput.addEventListener('keyup', function(event) {
+            if (event.keyCode === 13) { // Enter key pressed
+                const userMessage = userInput.value.trim();
+                if (userMessage) {
+                    chatBox.innerHTML += `<p class="user">You: ${userMessage}</p>`;
+                    // Send message to Python using Flask (explained later)
+                    fetch('/get_response', {
+                        method: 'POST',
+                        body: JSON.stringify({ message: userMessage })
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        chatBox.innerHTML += `<p class="bot">${data.response}</p>`;
+                        userInput.value = ''; // Clear input field
+                    });
+                }
+            }
+        });
+    </script>
+</body>
+</html>

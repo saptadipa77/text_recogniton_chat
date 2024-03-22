@@ -47,7 +47,7 @@ def check_all_messages(message):
     response(long.R_EATING, ['what', 'you', 'eat'], required_words=['you', 'eat'])
     response(long.R_MATERIALS,['help','materials','inquiry'],required_words=['materials'])
     response(long.R_PRICING,['price','of','materials'],required_words=['price','materials'])
-    response(long.R_PLACEMENT,['order','placement','materials','address','shipping','quantity','place'],required_words=['address','shipping','quantity','order','place'])
+    response(long.R_PLACEMENT,['order','placement','materials','address','shipping','quantity','place'],required_words=['address','shipping','quantity','order','place','I','want'])
     best_match = max(highest_prob_list, key=highest_prob_list.get)
     # print(highest_prob_list)
     # print(f'Best match = {best_match} | Score: {highest_prob_list[best_match]}')
